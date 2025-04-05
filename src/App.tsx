@@ -12,9 +12,7 @@ function App() {
       <div className={styles.container}>
         <Form fetchWeather={fetchWeather} />
         {loading && <Spinner />}
-        {hasWeatherData && !loading && weather && (
-          <WeatherDetail weather={weather} />
-        )}
+        {hasWeatherData && weather && <WeatherDetail weather={weather} />}
       </div>
     </>
   );

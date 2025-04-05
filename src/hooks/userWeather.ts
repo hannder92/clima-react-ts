@@ -40,15 +40,17 @@ export type Weather = z.infer<typeof Weather>;
 
 // type Weather = InferOutput<typeof WeatherSchema>;
 
+const initialState = {
+  name: "",
+  main: {
+    temp: 0,
+    temp_min: 0,
+    temp_max: 0,
+  },
+};
+
 export default function userWeather<Weather>() {
-  const [weather, setWeather] = useState({
-    name: "",
-    main: {
-      temp: 0,
-      temp_min: 0,
-      temp_max: 0,
-    },
-  });
+  const [weather, setWeather] = useState(initialState);
 
   const [loading, setLoading] = useState(false);
 
@@ -56,6 +58,7 @@ export default function userWeather<Weather>() {
     const appID = import.meta.env.VITE_API_KEY;
     try {
       setLoading(true);
+      setWeather(initialState);
       const geoURL = `http://api.openweathermap.org/geo/1.0/direct?q=${search.city},${search.country}&appid=${appID}`;
       const { data } = await axios.get(geoURL);
       const lat = data[0].lat;
