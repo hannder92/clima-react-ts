@@ -1,5 +1,5 @@
 import axios from "axios";
-import { set, z } from "zod";
+import { z } from "zod";
 // import { object, string, number, InferOutput ,parse} from "valibot";
 import { SearchType } from "../types";
 import { useMemo, useState } from "react";
@@ -49,8 +49,8 @@ const initialState = {
   },
 };
 
-export default function userWeather<Weather>() {
-  const [weather, setWeather] = useState(initialState);
+export default function userWeather() {
+  const [weather, setWeather] = useState<Weather>(initialState);
   const [loading, setLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
 
